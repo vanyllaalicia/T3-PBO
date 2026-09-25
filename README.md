@@ -6,5 +6,5 @@
 - `Main.java` → Menjalankan contoh penggunaan Array dan ArrayList.
    
 ## Screenshot Output
-(ArraynArrayList/Output/Screenshot.png)
+![Hasil](Output/Screenshot.png)
 
