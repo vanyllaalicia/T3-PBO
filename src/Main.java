@@ -1,43 +1,35 @@
-import java.util.ArrayList;
-
 public class Main {
+
     public static void main(String[] args) {
 
-        System.out.println("=== Array ===");
+        Bank bank = new Bank();
 
-        Mahasiswa[] kelas = new Mahasiswa[3];
+        bank.addCustomer("Nadine", "Desvita");
+        bank.addCustomer("Potaa", "Alicia");
 
-        kelas[0] = new Mahasiswa("Nadine", "F1D02410129");
-        kelas[1] = new Mahasiswa("Potaa", "F1D02410130");
-        kelas[2] = new Mahasiswa("Alicia", "F1D02410131");
+        Customer c1 = bank.getCustomer(0);
+        c1.setAccount(new Account(100000));
+        c1.setAccount(new Account(250000));
 
-        for (Mahasiswa m : kelas) {
-            m.tampilkanInfo();
-            System.out.println();
-        }
+        Customer c2 = bank.getCustomer(1);
+        c2.setAccount(new Account(500000));
 
-        System.out.println("=== ArrayList ===");
+        c1.getAccount(0).deposit(50000);
+        c2.getAccount(0).withdraw(100000);
 
-        ArrayList<Mahasiswa> daftar = new ArrayList<>();
+        System.out.println("=== DATA NASABAH BANK ===");
+        System.out.println("Jumlah Customer: " + bank.getNumOfCustomers());
 
-        daftar.add(new Mahasiswa("Fely", "F1D02410112"));
-        daftar.add(new Mahasiswa("Inas", "F1D02410133"));
-        daftar.add(new Mahasiswa("Putri", "F1D02410134"));
+        for (int i = 0; i < bank.getNumOfCustomers(); i++) {
+            Customer c = bank.getCustomer(i);
 
-        System.out.println("Jumlah mahasiswa: " + daftar.size());
+            System.out.println("\nNama: " +
+                    c.getFirstName() + " " + c.getLastName());
 
-        System.out.println("\nData mahasiswa:");
-        for (Mahasiswa m : daftar) {
-            m.tampilkanInfo();
-            System.out.println();
-        }
-
-        daftar.remove(1);
-
-        System.out.println("Setelah menghapus data kedua:");
-        for (Mahasiswa m : daftar) {
-            m.tampilkanInfo();
-            System.out.println();
+            for (int j = 0; j < c.getNumOfAccounts(); j++) {
+                System.out.println("Akun " + (j + 1)
+                        + " | Saldo: Rp" + c.getAccount(j).getBalance());
+            }
         }
     }
 }
